@@ -21,7 +21,7 @@ function monthOutput(month) {
     console.log(months[month]);
 }
 
-// monthOutput(month);
+monthOutput(month);
 
 function outputSeason(month) {
     let seasons = {
