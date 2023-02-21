@@ -66,8 +66,8 @@ function outputStrings() {
     let asterisk1 = '*******';
     let asterisk2 = '****';
 
-    for (let i = 0; i < 6; i++) {
-        if (i%2) {
+    for (let i = 1; i <= 7; i++) {
+        if (i%2 === 0) {
             console.log(asterisk2);
         } else {
             console.log(asterisk1);
