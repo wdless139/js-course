@@ -23,7 +23,7 @@ function monthOutput(month) {
     console.log(months[month]);
 }
 
-monthOutput(month);
+// monthOutput(month);
 
 // Пользователь вводит номер месяца. Вывести название поры года.
 
@@ -42,7 +42,7 @@ function outputSeason(month) {
     }
 }
 
-outputSeason(month);
+// outputSeason(month);
 
 // Даны три числа. Найдите наибольшее число из них.
 
@@ -52,7 +52,7 @@ function findMaxNumber(arr) {
     console.log(Math.max.apply(null, arr));
 }
 
-findMaxNumber(setNum);
+// findMaxNumber(setNum);
 
 // Выведите на экран строки вида:
 // *******
@@ -75,4 +75,69 @@ function outputStrings() {
     }
 }
 
-outputStrings();
+// outputStrings();
+
+/* Сгенерировать пароль для пользователя.
+ Требования: длина от 6 до 20 символов, должен быть ровно один символ подчеркивания,
+ хотя бы две заглавных буквы, не более 5 цифр.
+ */
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+let len = 8;
+
+function passwordGenerator(length) {
+    let symbol = '!№;%:?*()+=';
+    let title = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let low = 'abcdefghijklmnopqrstuvwxyz';
+    let numbers = '0123456789';
+    let password = '_';
+
+    let arrTitle = shuffle(Array.from(title));
+    let numbersArr = shuffle(Array.from(numbers));
+    let symbolsArr = shuffle(Array.from(symbol));
+    let lowArr = shuffle(Array.from(low));
+
+    let uppercasePosLength = length - 2;
+    let uppercaseLength = Math.floor(Math.random() * (uppercasePosLength - 2) + 2);
+    let digitLen = Math.floor(Math.random() * (length - uppercaseLength - 1) + 1);
+    let remainder = uppercaseLength - digitLen - 1;
+
+    for (let i = 0; i < uppercaseLength; i++) {
+        password += arrTitle[i];
+    }
+
+    for (let j = 0; j < digitLen; j++) {
+        password += numbersArr[j];
+    }
+
+    for (let l = 0; l < remainder; l++) {
+        password += lowArr[l] + symbolsArr[l];
+    }
+
+    let arrPas = shuffle(Array.from(password));
+    let result = arrPas.join('');
+
+    console.log(result);
+}
+
+passwordGenerator(len);
+
+//Заполнить массив нулями, кроме первого и последнего элементов, которые должны быть равны единице.
+
+function fillArray() {
+    let array = [];
+
+    for (let i = 0; i < 6; i ++) {
+        array.push(0);
+    }
+
+    array[0] = 1;
+    array[array.length - 1] = 1;
+    
+    console.log(array)
+}
+
+// fillArray();
