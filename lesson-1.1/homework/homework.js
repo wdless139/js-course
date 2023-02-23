@@ -123,7 +123,7 @@ function passwordGenerator(length) {
     console.log(result);
 }
 
-passwordGenerator(len);
+// passwordGenerator(len);
 
 //Заполнить массив нулями, кроме первого и последнего элементов, которые должны быть равны единице.
 
@@ -141,3 +141,38 @@ function fillArray() {
 }
 
 // fillArray();
+
+// Определить, содержит ли массив данное число x.
+
+let arr = [1, 5, 6, 4, 10];
+
+function containsNumber(array, x) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === x) {
+            console.log(array[i])
+        }
+    }
+}
+
+// containsNumber(arr, 10);
+
+// Найти количество четных чисел в массиве.
+
+let arrNum = [10, 3, 5, 20];
+
+function findEvenCount(array) {
+    // let amount = [];
+    let count = 0;
+
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 === 0) {
+            // amount.push(array[i]);
+            count++;
+        }
+    }
+
+    console.log(count);
+    // console.log(amount.length);
+}
+
+findEvenCount(arrNum);
