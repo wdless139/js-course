@@ -16,7 +16,33 @@
 ```
 console.log(myObj === changedObject): false
 ```
+***
+1.1. Реализовать объект `immutableObject` со свойством `prev` (предыдущий объект) со значением `null` и методом `put(key, value) -> object `  
+Метод `put(key, value)` возвращает копию текущего объекта но с 2 условиями:
+- В созданном объекте должен быть добавлен ключ `key` со значением `value`
+- В сво-во `prev` созданного объекта должен записываться текущий объект (у которого вызываем `put`)
+```
+const immutableObject = {
+    prev: null,
 
+    put(key, value) {...}
+}
+
+console.log(immutableObject); // { put..., prev: null}
+
+let resultObject = immutableObject.put('a', 'first value');
+console.log(resultObject); // { a: 'first value', put..., prev...}
+
+resultObject = resultObject.put('b', 'second value');
+console.log(resultObject); // { a: 'first value', b: 'second value', put..., prev...}
+
+resultObject = resultObject.put('c', 'third value');
+console.log(resultObject); // { a: 'first value', b: 'second value', c: 'third value', put..., prev...}
+
+console.log(resultObject === immutableObject); // false (ссылки не равны)
+console.log(resultObject.prev.prev.prev === immutableObject); // true
+```
+***
 2. >после главы 4.6
 
 Реализовать функцию конструктор принимающую 3 аргумента - `имя`, `год рождения`, `документ` (другой объект)
