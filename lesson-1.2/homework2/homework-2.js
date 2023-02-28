@@ -6,11 +6,9 @@ const document = {
 };
 
 function User(name, year, document) {
-    {
-        this.name = name;
-        this.age = thisYear - year;
-        this.document = document;
-    }
+    this.name = name;
+    this.age = thisYear - year;
+    this.document = document;
 }
 
 let user = new User('Denis', 2000, document);
