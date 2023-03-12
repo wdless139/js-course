@@ -1,16 +1,16 @@
 import AbstractComponent from "../AbstractComponent";
 import TaskComponent from "../TaskComponent";
+import TasksInfo from "../../model/tasksInfo";
 
 /**
  * Контейнер для задач, служит для работы с бизнес логикой задач
  */
 class TasksContainerComponent extends AbstractComponent {
-    _tasks = [
-        'Hello World',
-        'My Task',
-        'Do Something',
-        'Я не знаю'
-    ]
+    constructor(elem, props) {
+        super(elem, props)
+
+        this._tasksInfo = new TasksInfo()
+    }
 
     /**
      * Метод получает список задач и для каждой создает компонент TaskComponent, а затем отрисовывает его
@@ -22,20 +22,24 @@ class TasksContainerComponent extends AbstractComponent {
 
         const ul = container.querySelector('ul')
 
-        for (const task of this._tasks) {
+        for (const task of this._tasksInfo.getTasks()) {
             /**
              * Создание и отрисовка нового компонента TaskComponent
              * В качестве родительского элемента компонента передает созданный элемент ul
              */
             new TaskComponent(ul, {
-                /** В качестве имени таски передает таску из текущей итерации */
-                name: task,
+                /** В качестве имени передает имя задачи из текущей итерации */
+                name: task.name,
                 /**
-                 * Передает функцию которая была замкнута с таской из текущей итерации
-                 * При вызове функции из onClick вызовется функция deleteTask из текущего класса
-                 * которой в качестве аргумента передастся замкнутая таска
+                 * Передает функцию которая была замкнута с id задачи из текущей итерации
+                 * При вызове функции из onClick вызовется функция removeTask из TasksInfo
+                 * которой в качестве аргумента передастся замкнутый id задачи,
+                 * затем, снова вызовиться метод render текущего компонента для обновления списка задач
                  */
-                onClick: () => this.deleteTask(task)
+                onClick: () => {
+                    this._tasksInfo.removeTask(task.id)
+                    this.render()
+                }
             })
                 .render()
         }
@@ -43,14 +47,6 @@ class TasksContainerComponent extends AbstractComponent {
         /** Отчищает родительский элемент от HTML для того, чтобы обновить его */
         this.elem.innerHTML = ''
         this.elem.appendChild(container)
-    }
-
-    /** Удаляет таску по имени */
-    deleteTask(name) {
-        this._tasks = this._tasks.filter(value => value !== name)
-
-        /** Заного рисует список задач после удаления */
-        this.render()
     }
 }
 

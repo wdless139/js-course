@@ -1,7 +1,7 @@
 import AbstractComponent from "../AbstractComponent";
 
 /**
- * Компонент для отрисовки одной таски
+ * Компонент для отрисовки одной задачи
  */
 class TaskComponent extends AbstractComponent {
     render() {
