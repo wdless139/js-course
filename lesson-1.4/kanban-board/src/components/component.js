@@ -3,7 +3,7 @@
  * elem - хранит родительский для компонента HTMLElement
  * props - объект с данными, которые необходимы для отрисовки компонента
  */
-class AbstractComponent {
+class Component {
     /**
      * @param {HTMLElement} elem
      * @param {Object} props
@@ -19,4 +19,4 @@ class AbstractComponent {
     render() {}
 }
 
-export default AbstractComponent
+export default Component

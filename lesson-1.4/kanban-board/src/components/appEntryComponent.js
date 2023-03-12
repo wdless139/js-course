@@ -1,10 +1,10 @@
-import AbstractComponent from "../AbstractComponent";
-import TasksContainerComponent from "../TasksContainerComponent";
+import Component from "./component";
+import TasksContainerComponent from "./tasksContainerComponent";
 
 /**
  * Главный компонент приложения, точка входа
  */
-class AppEntryComponent extends AbstractComponent {
+class AppEntryComponent extends Component {
     render() {
         /**
          * Создается новый объект TasksContainerComponent, ему передается elem в который этот компонент будет

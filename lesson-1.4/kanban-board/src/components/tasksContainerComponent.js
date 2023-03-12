@@ -1,11 +1,11 @@
-import AbstractComponent from "../AbstractComponent";
-import TaskComponent from "../TaskComponent";
-import TasksInfo from "../../model/tasksInfo";
+import Component from "./component";
+import TaskComponent from "./taskComponent";
+import TasksInfo from "../model/tasksInfo";
 
 /**
  * Контейнер для задач, служит для работы с бизнес логикой задач
  */
-class TasksContainerComponent extends AbstractComponent {
+class TasksContainerComponent extends Component {
     constructor(elem, props) {
         super(elem, props)
 

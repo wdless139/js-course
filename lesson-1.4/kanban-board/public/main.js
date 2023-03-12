@@ -10,43 +10,43 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/components/AbstractComponent/index.js":
+/***/ "./src/components/appEntryComponent.js":
+/*!*********************************************!*\
+  !*** ./src/components/appEntryComponent.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ \"./src/components/component.js\");\n/* harmony import */ var _tasksContainerComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tasksContainerComponent */ \"./src/components/tasksContainerComponent.js\");\n\r\n\r\n\r\n/**\r\n * Главный компонент приложения, точка входа\r\n */\r\nclass AppEntryComponent extends _component__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    render() {\r\n        /**\r\n         * Создается новый объект TasksContainerComponent, ему передается elem в который этот компонент будет\r\n         * встраивать HTML\r\n         * Затем, у компонента вызывается метод render для его отрисовки\r\n         */\r\n        new _tasksContainerComponent__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this.elem, {}).render()\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppEntryComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/appEntryComponent.js?");
+
+/***/ }),
+
+/***/ "./src/components/component.js":
+/*!*************************************!*\
+  !*** ./src/components/component.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\r\n * Базовый класс для всех компонентов, имеет 2 свойства:\r\n * elem - хранит родительский для компонента HTMLElement\r\n * props - объект с данными, которые необходимы для отрисовки компонента\r\n */\r\nclass Component {\r\n    /**\r\n     * @param {HTMLElement} elem\r\n     * @param {Object} props\r\n     */\r\n    constructor(elem, props) {\r\n        this.elem = elem\r\n        this.props = props\r\n    }\r\n\r\n    /**\r\n     * Метод служит для отрисовки HTML на странице\r\n     */\r\n    render() {}\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Component);\n\n//# sourceURL=webpack://kanban-board/./src/components/component.js?");
+
+/***/ }),
+
+/***/ "./src/components/taskComponent.js":
+/*!*****************************************!*\
+  !*** ./src/components/taskComponent.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ \"./src/components/component.js\");\n\r\n\r\n/**\r\n * Компонент для отрисовки одной задачи\r\n */\r\nclass TaskComponent extends _component__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    render() {\r\n        const task = document.createElement('li')\r\n        task.className = 'task'\r\n        task.innerHTML = `\r\n            <p>${this.props.name}</p>\r\n            <p class=\"delete\" style=\"color: firebrick\">удалить</p>\r\n            `\r\n\r\n        /**\r\n         * Регистрации функции которая была переданна из компонента TasksContainerComponent на клик по <p class=\"delete\"...\r\n         */\r\n        task.querySelector('.delete')\r\n            .addEventListener('click', this.props.onClick)\r\n\r\n        this.elem.appendChild(task)\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TaskComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/taskComponent.js?");
+
+/***/ }),
+
+/***/ "./src/components/tasksContainerComponent.js":
 /*!***************************************************!*\
-  !*** ./src/components/AbstractComponent/index.js ***!
+  !*** ./src/components/tasksContainerComponent.js ***!
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\r\n * Базовый класс для всех компонентов, имеет 2 свойства:\r\n * elem - хранит родительский для компонента HTMLElement\r\n * props - объект с данными, которые необходимы для отрисовки компонента\r\n */\r\nclass AbstractComponent {\r\n    /**\r\n     * @param {HTMLElement} elem\r\n     * @param {Object} props\r\n     */\r\n    constructor(elem, props) {\r\n        this.elem = elem\r\n        this.props = props\r\n    }\r\n\r\n    /**\r\n     * Метод служит для отрисовки HTML на странице\r\n     */\r\n    render() {}\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AbstractComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/AbstractComponent/index.js?");
-
-/***/ }),
-
-/***/ "./src/components/AppEntryComponent/index.js":
-/*!***************************************************!*\
-  !*** ./src/components/AppEntryComponent/index.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../AbstractComponent */ \"./src/components/AbstractComponent/index.js\");\n/* harmony import */ var _TasksContainerComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TasksContainerComponent */ \"./src/components/TasksContainerComponent/index.js\");\n\r\n\r\n\r\n/**\r\n * Главный компонент приложения, точка входа\r\n */\r\nclass AppEntryComponent extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    render() {\r\n        /**\r\n         * Создается новый объект TasksContainerComponent, ему передается elem в который этот компонент будет\r\n         * встраивать HTML\r\n         * Затем, у компонента вызывается метод render для его отрисовки\r\n         */\r\n        new _TasksContainerComponent__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this.elem, {}).render()\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppEntryComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/AppEntryComponent/index.js?");
-
-/***/ }),
-
-/***/ "./src/components/TaskComponent/index.js":
-/*!***********************************************!*\
-  !*** ./src/components/TaskComponent/index.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../AbstractComponent */ \"./src/components/AbstractComponent/index.js\");\n\r\n\r\n/**\r\n * Компонент для отрисовки одной задачи\r\n */\r\nclass TaskComponent extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    render() {\r\n        const task = document.createElement('li')\r\n        task.className = 'task'\r\n        task.innerHTML = `\r\n            <p>${this.props.name}</p>\r\n            <p class=\"delete\" style=\"color: firebrick\">удалить</p>\r\n            `\r\n\r\n        /**\r\n         * Регистрации функции которая была переданна из компонента TasksContainerComponent на клик по <p class=\"delete\"...\r\n         */\r\n        task.querySelector('.delete')\r\n            .addEventListener('click', this.props.onClick)\r\n\r\n        this.elem.appendChild(task)\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TaskComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/TaskComponent/index.js?");
-
-/***/ }),
-
-/***/ "./src/components/TasksContainerComponent/index.js":
-/*!*********************************************************!*\
-  !*** ./src/components/TasksContainerComponent/index.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../AbstractComponent */ \"./src/components/AbstractComponent/index.js\");\n/* harmony import */ var _TaskComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TaskComponent */ \"./src/components/TaskComponent/index.js\");\n/* harmony import */ var _model_tasksInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/tasksInfo */ \"./src/model/tasksInfo.js\");\n\r\n\r\n\r\n\r\n/**\r\n * Контейнер для задач, служит для работы с бизнес логикой задач\r\n */\r\nclass TasksContainerComponent extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    constructor(elem, props) {\r\n        super(elem, props)\r\n\r\n        this._tasksInfo = new _model_tasksInfo__WEBPACK_IMPORTED_MODULE_2__[\"default\"]()\r\n    }\r\n\r\n    /**\r\n     * Метод получает список задач и для каждой создает компонент TaskComponent, а затем отрисовывает его\r\n     */\r\n    render() {\r\n        const container = document.createElement('div')\r\n        container.className = 'tasks_container'\r\n        container.innerHTML = '<ul></ul>'\r\n\r\n        const ul = container.querySelector('ul')\r\n\r\n        for (const task of this._tasksInfo.getTasks()) {\r\n            /**\r\n             * Создание и отрисовка нового компонента TaskComponent\r\n             * В качестве родительского элемента компонента передает созданный элемент ul\r\n             */\r\n            new _TaskComponent__WEBPACK_IMPORTED_MODULE_1__[\"default\"](ul, {\r\n                /** В качестве имени передает имя задачи из текущей итерации */\r\n                name: task.name,\r\n                /**\r\n                 * Передает функцию которая была замкнута с id задачи из текущей итерации\r\n                 * При вызове функции из onClick вызовется функция removeTask из TasksInfo\r\n                 * которой в качестве аргумента передастся замкнутый id задачи,\r\n                 * затем, снова вызовиться метод render текущего компонента для обновления списка задач\r\n                 */\r\n                onClick: () => {\r\n                    this._tasksInfo.removeTask(task.id)\r\n                    this.render()\r\n                }\r\n            })\r\n                .render()\r\n        }\r\n\r\n        /** Отчищает родительский элемент от HTML для того, чтобы обновить его */\r\n        this.elem.innerHTML = ''\r\n        this.elem.appendChild(container)\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TasksContainerComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/TasksContainerComponent/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ \"./src/components/component.js\");\n/* harmony import */ var _taskComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./taskComponent */ \"./src/components/taskComponent.js\");\n/* harmony import */ var _model_tasksInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/tasksInfo */ \"./src/model/tasksInfo.js\");\n\r\n\r\n\r\n\r\n/**\r\n * Контейнер для задач, служит для работы с бизнес логикой задач\r\n */\r\nclass TasksContainerComponent extends _component__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\r\n    constructor(elem, props) {\r\n        super(elem, props)\r\n\r\n        this._tasksInfo = new _model_tasksInfo__WEBPACK_IMPORTED_MODULE_2__[\"default\"]()\r\n    }\r\n\r\n    /**\r\n     * Метод получает список задач и для каждой создает компонент TaskComponent, а затем отрисовывает его\r\n     */\r\n    render() {\r\n        const container = document.createElement('div')\r\n        container.className = 'tasks_container'\r\n        container.innerHTML = '<ul></ul>'\r\n\r\n        const ul = container.querySelector('ul')\r\n\r\n        for (const task of this._tasksInfo.getTasks()) {\r\n            /**\r\n             * Создание и отрисовка нового компонента TaskComponent\r\n             * В качестве родительского элемента компонента передает созданный элемент ul\r\n             */\r\n            new _taskComponent__WEBPACK_IMPORTED_MODULE_1__[\"default\"](ul, {\r\n                /** В качестве имени передает имя задачи из текущей итерации */\r\n                name: task.name,\r\n                /**\r\n                 * Передает функцию которая была замкнута с id задачи из текущей итерации\r\n                 * При вызове функции из onClick вызовется функция removeTask из TasksInfo\r\n                 * которой в качестве аргумента передастся замкнутый id задачи,\r\n                 * затем, снова вызовиться метод render текущего компонента для обновления списка задач\r\n                 */\r\n                onClick: () => {\r\n                    this._tasksInfo.removeTask(task.id)\r\n                    this.render()\r\n                }\r\n            })\r\n                .render()\r\n        }\r\n\r\n        /** Отчищает родительский элемент от HTML для того, чтобы обновить его */\r\n        this.elem.innerHTML = ''\r\n        this.elem.appendChild(container)\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TasksContainerComponent);\n\n//# sourceURL=webpack://kanban-board/./src/components/tasksContainerComponent.js?");
 
 /***/ }),
 
@@ -56,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_AppEntryComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/AppEntryComponent */ \"./src/components/AppEntryComponent/index.js\");\n\r\n\r\nfunction runApp() {\r\n    const root = document.querySelector('#app')\r\n\r\n    new _components_AppEntryComponent__WEBPACK_IMPORTED_MODULE_0__[\"default\"](root, {}).render()\r\n}\r\n\r\nrunApp()\n\n//# sourceURL=webpack://kanban-board/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_appEntryComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/appEntryComponent */ \"./src/components/appEntryComponent.js\");\n\r\n\r\nfunction runApp() {\r\n    /** В качестве корнегого элемента получаем элемент с id app */\r\n    const root = document.querySelector('#app')\r\n\r\n    new _components_appEntryComponent__WEBPACK_IMPORTED_MODULE_0__[\"default\"](root, {}).render()\r\n}\r\n\r\nrunApp()\n\n//# sourceURL=webpack://kanban-board/./src/index.js?");
 
 /***/ }),
 

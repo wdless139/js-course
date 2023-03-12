@@ -1,9 +1,9 @@
-import AbstractComponent from "../AbstractComponent";
+import Component from "./component";
 
 /**
  * Компонент для отрисовки одной задачи
  */
-class TaskComponent extends AbstractComponent {
+class TaskComponent extends Component {
     render() {
         const task = document.createElement('li')
         task.className = 'task'
