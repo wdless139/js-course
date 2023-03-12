@@ -6,10 +6,15 @@ import TasksInfo from "../model/tasksInfo";
  * Контейнер для задач, служит для работы с бизнес логикой задач
  */
 class TasksContainerComponent extends Component {
-    constructor(elem, props) {
+    /**
+     * @param {HTMLElement} elem
+     * @param {Object} props
+     * @param {TasksInfo} tasksInfo
+     */
+    constructor(elem, props, tasksInfo) {
         super(elem, props)
 
-        this._tasksInfo = new TasksInfo()
+        this._tasksInfo = tasksInfo
     }
 
     /**
