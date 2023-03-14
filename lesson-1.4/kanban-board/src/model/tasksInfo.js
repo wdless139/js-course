@@ -2,9 +2,11 @@ import Task from "./task";
 
 class TasksInfo {
     _tasks = [
-        new Task(1, 'Some Task'),
-        new Task(2, 'Do something'),
-        new Task(3, 'Update something')
+        new Task(1, 'Some Task', 'ToDo'),
+        new Task(2, 'Mine more ninada😎', 'Done'),
+        new Task(3, 'Do something', 'ToDo'),
+        new Task(4, 'Finished😎', 'Done'),
+        new Task(5, 'Update something', 'ToDo')
     ]
 
     /**

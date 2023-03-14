@@ -1,6 +1,7 @@
 import Component from "./component";
 import TaskComponent from "./taskComponent";
 import TasksInfo from "../model/tasksInfo";
+import taskComponent from "./taskComponent";
 
 /**
  * Контейнер для задач, служит для работы с бизнес логикой задач
@@ -21,32 +22,61 @@ class TasksContainerComponent extends Component {
      * Метод получает список задач и для каждой создает компонент TaskComponent, а затем отрисовывает его
      */
     render() {
-        const container = document.createElement('div')
-        container.className = 'tasks_container'
-        container.innerHTML = '<ul></ul>'
+        const container = document.createElement('div');
+        const todo = document.createElement('div');
+        const done = document.createElement('div');
 
-        const ul = container.querySelector('ul')
+        todo.className = 'tasks_todo';
+        done.className = 'tasks_done';
+        container.className = 'tasks_container';
+
+        container.appendChild(todo, done);
+
+        done.innerHTML = '<ul></ul>';
+        todo.innerHTML = '<ul></ul>';
+
+        const ulTodo = todo.querySelector('ul');
+        const ulDone = done.querySelector('ul');
 
         for (const task of this._tasksInfo.getTasks()) {
             /**
              * Создание и отрисовка нового компонента TaskComponent
              * В качестве родительского элемента компонента передает созданный элемент ul
              */
-            new TaskComponent(ul, {
-                /** В качестве имени передает имя задачи из текущей итерации */
-                name: task.name,
-                /**
-                 * Передает функцию которая была замкнута с id задачи из текущей итерации
-                 * При вызове функции из onClick вызовется функция removeTask из TasksInfo
-                 * которой в качестве аргумента передастся замкнутый id задачи,
-                 * затем, снова вызовиться метод render текущего компонента для обновления списка задач
-                 */
-                onClick: () => {
-                    this._tasksInfo.removeTask(task.id)
-                    this.render()
-                }
-            })
-                .render()
+            if (task.isTodo()) {
+                new TaskComponent(ulTodo, {
+                    name: task.name,
+
+                    onClick: () => {
+                        this._tasksInfo.removeTask(task.id)
+                        this.render()
+                    }
+                }) .render();
+            } else if (task.isDone()) {
+                new TaskComponent(ulDone, {
+                    name: task.name,
+
+                    onClick: () => {
+                        this._tasksInfo.removeTask(task.id)
+                        this.render()
+                    }
+                }) .render();
+            }
+
+            // new TaskComponent(ul, {
+            //     /** В качестве имени передает имя задачи из текущей итерации */
+            //     name: task.name,
+            //     /**
+            //      * Передает функцию которая была замкнута с id задачи из текущей итерации
+            //      * При вызове функции из onClick вызовется функция removeTask из TasksInfo
+            //      * которой в качестве аргумента передастся замкнутый id задачи,
+            //      * затем, снова вызовиться метод render текущего компонента для обновления списка задач
+            //      */
+            //     onClick: () => {
+            //         this._tasksInfo.removeTask(task.id)
+            //         this.render()
+            //     }
+            //  })
         }
 
         /** Отчищает родительский элемент от HTML для того, чтобы обновить его */
