@@ -1,6 +1,5 @@
 import Component from "./component";
 import TaskComponent from "./taskComponent";
-import TasksInfo from "../model/tasksInfo";
 
 /**
  * Контейнер для задач, служит для работы с бизнес логикой задач
