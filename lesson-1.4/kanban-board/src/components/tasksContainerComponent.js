@@ -30,7 +30,8 @@ class TasksContainerComponent extends Component {
         done.className = 'tasks_done';
         container.className = 'tasks_container';
 
-        container.appendChild(todo, done);
+        container.appendChild(todo);
+        container.appendChild(done);
 
         done.innerHTML = '<ul></ul>';
         todo.innerHTML = '<ul></ul>';
@@ -62,21 +63,6 @@ class TasksContainerComponent extends Component {
                     }
                 }) .render();
             }
-
-            // new TaskComponent(ul, {
-            //     /** В качестве имени передает имя задачи из текущей итерации */
-            //     name: task.name,
-            //     /**
-            //      * Передает функцию которая была замкнута с id задачи из текущей итерации
-            //      * При вызове функции из onClick вызовется функция removeTask из TasksInfo
-            //      * которой в качестве аргумента передастся замкнутый id задачи,
-            //      * затем, снова вызовиться метод render текущего компонента для обновления списка задач
-            //      */
-            //     onClick: () => {
-            //         this._tasksInfo.removeTask(task.id)
-            //         this.render()
-            //     }
-            //  })
         }
 
         /** Отчищает родительский элемент от HTML для того, чтобы обновить его */

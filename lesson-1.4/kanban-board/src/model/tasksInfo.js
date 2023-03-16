@@ -23,6 +23,13 @@ class TasksInfo {
     removeTask(id) {
         this._tasks = this._tasks.filter(task => task.id !== id)
     }
+
+    /**
+     * @param {Task} task
+     */
+    addTask(task) {
+        this._tasks.push(task);
+    }
 }
 
 export default TasksInfo
