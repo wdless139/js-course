@@ -1,0 +1,26 @@
+.tasks_container {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    justify-content: center;
+    justify-items: center;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin-bottom: 10px;
+    height: 25px;
+}
+
+.create_task__wrapper {
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
