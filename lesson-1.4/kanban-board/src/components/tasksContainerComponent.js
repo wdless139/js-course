@@ -47,6 +47,12 @@ class TasksContainerComponent extends Component {
             if (task.isTodo()) {
                 new TaskComponent(ulTodo, {
                     name: task.name,
+                    status: task.status,
+
+                    onChangeStatus: (event) => {
+                        this._tasksInfo.changeStatus(event.currentTarget.value, task.id);
+                        this.render()
+                    },
 
                     onClick: () => {
                         this._tasksInfo.removeTask(task.id)
@@ -56,6 +62,12 @@ class TasksContainerComponent extends Component {
             } else if (task.isDone()) {
                 new TaskComponent(ulDone, {
                     name: task.name,
+                    status: task.status,
+
+                    onChangeStatus: (event) => {
+                        this._tasksInfo.changeStatus(event.currentTarget.value, task.id);
+                        this.render()
+                    },
 
                     onClick: () => {
                         this._tasksInfo.removeTask(task.id)

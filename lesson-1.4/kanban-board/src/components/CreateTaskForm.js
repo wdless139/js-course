@@ -1,24 +1,8 @@
-import tasksInfo from "../model/tasksInfo";
 import Component from "./component";
 import Task from "../model/task";
 import {observableComponent} from "../core/observableComponent";
 
-// function addTaskForm(task) {
-//     const app = document.querySelector('#app');
-//     const FORM = document.createElement('textarea');
-//
-//     app.appendChild(FORM);
-//
-//     const button = document.createElement('button');
-//     button.innerText = 'Create Task';
-//
-//     button.addEventListener('click', {
-//
-//     })
-//
-// }
-
-class AddTaskForm extends Component {
+export default class AddTaskForm extends Component {
     /**
      * @param {HTMLElement} elem
      * @param {Object} props
@@ -37,23 +21,22 @@ class AddTaskForm extends Component {
     }
 
     render() {
-        const app = document.querySelector('#app');
-        const FORM = document.createElement('input');
-
-        FORM.setAttribute('placeholder', 'Name task');
-        app.appendChild(FORM);
-
+        const form = document.createElement('input');
         const button = document.createElement('button');
         button.innerText = 'Create Task';
 
+        form.setAttribute('placeholder', 'Name task');
+
         button.addEventListener('click', () => {
             this._tasksInfo.addTask(new Task(
-                Math.floor(Math.random() * 99)),
-                FORM.value,
-                'Done');
-            this.emitRender()
+                Math.floor(Math.random() * 99),
+                form.value,
+                'ToDo'))
+
+            this.emitRender();
         })
 
-        this.elem.appendChild(button)
+        this.elem.appendChild(form);
+        this.elem.appendChild(button);
     }
 }

@@ -1,4 +1,5 @@
 import Task from "./task";
+import task from "./task";
 
 class TasksInfo {
     _tasks = [
@@ -22,6 +23,19 @@ class TasksInfo {
      */
     removeTask(id) {
         this._tasks = this._tasks.filter(task => task.id !== id)
+    }
+
+    /**
+     * Изменение status`а задачи
+     * @param {string} status
+     * @param {number} id
+     */
+    changeStatus(status, id) {
+        for (let task of this._tasks) {
+            if (task.id === id) {
+                task.status = status;
+            }
+        }
     }
 
     /**
