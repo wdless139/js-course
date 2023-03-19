@@ -1,5 +1,4 @@
 import Component from "./component";
-import Task from "../model/task";
 import {observableComponent} from "../core/observableComponent";
 
 export default class AddTaskForm extends Component {
@@ -28,12 +27,17 @@ export default class AddTaskForm extends Component {
         form.setAttribute('placeholder', 'Name task');
 
         button.addEventListener('click', () => {
-            this._tasksInfo.addTask(new Task(
-                Math.floor(Math.random() * 99),
-                form.value,
-                'ToDo'))
+            // this._tasksInfo.addTask(new Task(
+            //     Math.floor(Math.random() * 99),
+            //     form.value,
+            //     'ToDo'))
+            //
+            // this.emitRender();
 
-            this.emitRender();
+            /**
+             * @TODO Использовать POST /api/tasks
+             * Пример тела запроса: { name: 'Hello Task', status: 'ToDo' }
+             */
         })
 
         this.elem.appendChild(form);

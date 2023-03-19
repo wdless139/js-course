@@ -1,7 +1,6 @@
 import Component from "./component";
 import TaskComponent from "./taskComponent";
-import TasksInfo from "../model/tasksInfo";
-import taskComponent from "./taskComponent";
+import axios from "axios";
 
 /**
  * Контейнер для задач, служит для работы с бизнес логикой задач
@@ -36,50 +35,53 @@ class TasksContainerComponent extends Component {
         done.innerHTML = '<ul></ul>';
         todo.innerHTML = '<ul></ul>';
 
-        const ulTodo = todo.querySelector('ul');
-        const ulDone = done.querySelector('ul');
-
-        for (const task of this._tasksInfo.getTasks()) {
-            /**
-             * Создание и отрисовка нового компонента TaskComponent
-             * В качестве родительского элемента компонента передает созданный элемент ul
-             */
-            if (task.isTodo()) {
-                new TaskComponent(ulTodo, {
-                    name: task.name,
-                    status: task.status,
-
-                    onChangeStatus: (event) => {
-                        this._tasksInfo.changeStatus(event.currentTarget.value, task.id);
-                        this.render()
-                    },
-
-                    onClick: () => {
-                        this._tasksInfo.removeTask(task.id)
-                        this.render()
-                    }
-                }) .render();
-            } else if (task.isDone()) {
-                new TaskComponent(ulDone, {
-                    name: task.name,
-                    status: task.status,
-
-                    onChangeStatus: (event) => {
-                        this._tasksInfo.changeStatus(event.currentTarget.value, task.id);
-                        this.render()
-                    },
-
-                    onClick: () => {
-                        this._tasksInfo.removeTask(task.id)
-                        this.render()
-                    }
-                }) .render();
-            }
-        }
+        /** Получение списка задач по Http */
+        axios.get('/api/tasks')
+            .then(response => {
+                for (const task of response.data) {
+                    this.renderTask(task)
+                }
+            })
 
         /** Отчищает родительский элемент от HTML для того, чтобы обновить его */
         this.elem.innerHTML = ''
         this.elem.appendChild(container)
+    }
+
+    renderTask(task) {
+        const ulTodo = document.querySelector('.tasks_todo ul');
+        const ulDone = document.querySelector('.tasks_done ul');
+
+        let parentUl = null
+
+        if (task.status === 'ToDo') {
+            parentUl = ulTodo
+        } else if (task.status === 'Done') {
+            parentUl = ulDone
+        }
+
+        new TaskComponent(parentUl, {
+            name: task.name,
+            status: task.status,
+
+            /** Изменение статуса задачи по Http */
+            onChangeStatus: (event) => {
+                axios.patch(`/api/task/${task.id}`, { status: event.currentTarget.value })
+                    .then(response => {
+                        this.render()
+                    })
+            },
+
+            onDelete: () => {
+                // this._tasksInfo.removeTask(task.id)
+                // this.render()
+
+                /**
+                 * Использовать DELETE /api/task/:id
+                 */
+            }
+        })
+            .render();
     }
 }
 

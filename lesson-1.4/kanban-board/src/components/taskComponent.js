@@ -20,7 +20,7 @@ class TaskComponent extends Component {
          * Регистрации функции которая была переданна из компонента TasksContainerComponent на клик по <p class="delete"...
          */
         task.querySelector('.delete')
-            .addEventListener('click', this.props.onClick)
+            .addEventListener('click', this.props.onDelete)
 
         task.querySelector('.status')
             .addEventListener('change', this.props.onChangeStatus)
