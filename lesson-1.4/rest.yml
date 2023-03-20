@@ -1,0 +1,72 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: Kanban Board REST API
+servers:
+  - url: http://localhost:3000/
+paths:
+  /api/tasks:
+    get:
+      summary: Получение списка задач
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    status:
+                      type: string
+    post:
+      summary: Добавление новой задачи
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                status:
+                  type: string
+      responses:
+        "200":
+          description: "OK"
+  /api/task/{id}:
+    delete:
+      summary: Удаление задачи по id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "OK"
+    patch:
+      summary: Обновление статуса задачи по id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        "200":
+          description: "OK"
