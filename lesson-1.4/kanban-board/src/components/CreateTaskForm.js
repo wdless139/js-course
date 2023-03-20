@@ -5,12 +5,9 @@ export default class AddTaskForm extends Component {
     /**
      * @param {HTMLElement} elem
      * @param {Object} props
-     * @param {TasksInfo} tasksInfo
      */
-    constructor(elem, props, tasksInfo) {
+    constructor(elem, props) {
         super(elem, props)
-
-        this._tasksInfo = tasksInfo
 
         /**
          * Добавление примеси observableComponent созданному объекту

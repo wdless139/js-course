@@ -1,6 +1,5 @@
 import Component from "./component";
 import TasksContainerComponent from "./tasksContainerComponent";
-import TasksInfo from "../model/tasksInfo";
 import AddTaskForm from "./CreateTaskForm";
 
 /**
@@ -8,8 +7,6 @@ import AddTaskForm from "./CreateTaskForm";
  */
 class AppEntryComponent extends Component {
     render() {
-        const tasksInfo = new TasksInfo()
-
         const createTaskWrapper = document.createElement('div')
         createTaskWrapper.className = 'create_task__wrapper'
 
@@ -23,8 +20,8 @@ class AppEntryComponent extends Component {
         this.elem.appendChild(createTaskWrapper)
         this.elem.appendChild(tasksContainerWrapper)
 
-        const createTask = new AddTaskForm(createTaskWrapper, {}, tasksInfo)
-        const tasksContainer = new TasksContainerComponent(tasksContainerWrapper, {}, tasksInfo)
+        const createTask = new AddTaskForm(createTaskWrapper, {})
+        const tasksContainer = new TasksContainerComponent(tasksContainerWrapper, {})
 
         /**
          * Добавляет tasksContainer как слушатель события emitRender для demoCreateTask

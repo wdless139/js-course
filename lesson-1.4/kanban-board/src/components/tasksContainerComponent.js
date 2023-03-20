@@ -7,17 +7,6 @@ import axios from "axios";
  */
 class TasksContainerComponent extends Component {
     /**
-     * @param {HTMLElement} elem
-     * @param {Object} props
-     * @param {TasksInfo} tasksInfo
-     */
-    constructor(elem, props, tasksInfo) {
-        super(elem, props)
-
-        this._tasksInfo = tasksInfo
-    }
-
-    /**
      * Метод получает список задач и для каждой создает компонент TaskComponent, а затем отрисовывает его
      */
     render() {

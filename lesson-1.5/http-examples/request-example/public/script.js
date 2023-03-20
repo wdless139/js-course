@@ -13,7 +13,7 @@ xhr.open('GET', '/api/message')
 xhr.send()
 
 xhr.onload = () => {
-    xhrLi.textContent = `XMLHttpRequest: ${JSON.parse(xhr.response).message}`
+    xhrLi.textContent = `XMLHttpRequest: ${xhr.status} ${JSON.parse(xhr.response).message}`
 }
 
 xhr.onerror = () => {
@@ -27,7 +27,7 @@ xhr.onerror = () => {
  */
 axios.get('/api/message')
     .then(response => {
-        axiosLi.textContent = `axios: ${response.data.message}`
+        axiosLi.textContent = `axios: ${response.status} ${response.data.message}`
     })
     .catch(error => {
         axiosLi.textContent = 'axios: fail'
@@ -45,7 +45,7 @@ fetch('/api/message', { method: 'GET' })
          */
         response.json()
             .then(body => {
-                fetchLi.textContent = `fetch: ${body.message}`
+                fetchLi.textContent = `fetch: ${response.status} ${body.message}`
             })
     })
     .catch(error => {

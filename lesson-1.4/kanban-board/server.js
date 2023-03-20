@@ -9,7 +9,23 @@ class Task {
 }
 
 class TasksInfo {
-    static _tasks = []
+    static _tasks = [
+        new Task(
+            Math.floor(Math.random() * 1000),
+            'Demo Task',
+            'ToDo'
+        ),
+        new Task(
+            Math.floor(Math.random() * 1000),
+            'Another Task',
+            'ToDo'
+        ),
+        new Task(
+            Math.floor(Math.random() * 1000),
+            'Done Task',
+            'Done'
+        )
+    ]
 
     static getTasks() {
         return this._tasks
