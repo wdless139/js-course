@@ -1,13 +1,13 @@
 openapi: "3.0.0"
 info:
   version: "1.0.0"
-  title: Kanban Board REST API
+  title: Todo App REST API
 servers:
   - url: http://localhost:3000/
 paths:
-  /api/tasks:
+  /items:
     get:
-      summary: Получение списка задач
+      summary: Получение списка дел
       responses:
         "200":
           description: "OK"
@@ -19,13 +19,13 @@ paths:
                   type: object
                   properties:
                     id:
-                      type: number
+                      type: string
                     name:
                       type: string
-                    status:
-                      type: string
+                    completed:
+                      type: boolean
     post:
-      summary: Добавление новой задачи
+      summary: Добавление нового дела
       requestBody:
         content:
           application/json:
@@ -34,39 +34,39 @@ paths:
               properties:
                 name:
                   type: string
-                status:
-                  type: string
       responses:
         "200":
           description: "OK"
-  /api/task/{id}:
+  /items/{id}:
     delete:
-      summary: Удаление задачи по id
+      summary: Удаление дела по id
       parameters:
         - name: id
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: "OK"
-    patch:
-      summary: Обновление статуса задачи по id
+    put:
+      summary: Обновление дела по id
       parameters:
         - name: id
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                status:
+                name:
                   type: string
+                completed:
+                  type: boolean
       responses:
         "200":
           description: "OK"
